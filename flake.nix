@@ -11,7 +11,7 @@ inputs.nixpkgs = {
 
 outputs = { self, nixpkgs }: let
   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  haskellPackages = pkgs.haskell.packages.ghc928;
+  haskellPackages = pkgs.haskell.packages.ghc92;
   struo = haskellPackages.callPackage ./struo.nix {};
 in {
   packages.x86_64-linux.default = struo;
