@@ -11,9 +11,21 @@ inputs.nixpkgs = {
 
 outputs = { self, nixpkgs }: let
   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  callPackage = pkgs.haskell.packages.ghc928.callPackage;
+  haskellPackages = pkgs.haskell.packages.ghc928;
+  struo = haskellPackages.callPackage ./struo.nix {};
 in {
-  packages.x86_64-linux.default = callPackage ./struo.nix {};
+  packages.x86_64-linux.default = struo;
+
+  devShells.x86_64-linux.default = pkgs.mkShell {
+    packages = with haskellPackages; [
+      ghcid
+      hlint
+      cabal2nix
+      cabal-install
+    ];
+
+    inputsFrom = [ struo ];
+  };
 };
 
 }
