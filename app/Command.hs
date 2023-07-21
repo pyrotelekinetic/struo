@@ -5,6 +5,7 @@ import Options.Applicative
 data Options = Opts
   { flakeRef :: String
   , mode :: Mode
+  , dry :: Bool
   }
 
 data Mode = Switch | Boot | Test
@@ -17,6 +18,8 @@ refP :: Parser String
 refP = strArgument
   $ metavar "FLAKE"
   <> help "The flake containing the configuration to build"
+  <> value "system"
+  <> showDefault
 
 modeP :: Parser Mode
 modeP = bootP <|> testP <|> switchP
@@ -37,8 +40,14 @@ modeP = bootP <|> testP <|> switchP
     <> help "Activate configuration after rebuild (Default)"
     <> hidden
 
+dryP :: Parser Bool
+dryP = switch
+  $ long "dry-run"
+  <> short 'd'
+  <> help "Show what commands would be run, instead of running them"
+
 optsP :: Parser Options
-optsP = Opts <$> refP <*> modeP <**> helper
+optsP = Opts <$> refP <*> modeP <*> dryP <**> helper
 
 parse :: IO Options
 parse = execParser . info optsP $ fullDesc <> description
