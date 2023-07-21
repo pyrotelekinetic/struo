@@ -1,6 +1,11 @@
 # struo
+A utility for switching and testing nixos configurations
 
-Latin verb meaning "compose", "join together", or "build".
+The name comes from the Latin verb meaning "compose", "join together", or
+"build".
+
+The project is still early in development, and not considered suitable for use
+at this stage.
 
 ---
 
