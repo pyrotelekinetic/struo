@@ -7,6 +7,12 @@ The name comes from the Latin verb meaning "compose", "join together", or
 The project is still early in development, and not considered suitable for use
 at this stage.
 
+# Goals/Planned Features:
+- Configuration managed by NixOS module
+- Strict generation management
+- Lots of other stuff that I don't know how to describe currently
+
+
 ---
 
     Copyright (C) 2023  Carter "pyrotelekinetic" Ison <carter@isons.org>
